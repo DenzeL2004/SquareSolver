@@ -1,28 +1,28 @@
 #include <stdio.h>
 #include <TXLib.h>
-float dis(float a, float b, float c){ //РџРѕРёСЃРє Р”РµСЃРєСЂРёРјРµРЅР°РЅС‚Рµ
+float dis(float a, float b, float c){ //poisk deskrimenanta
     return b*b - 4*a*c;
 }
-void solves(float a, float b, float D, float &x1, float &x2){ //РџРѕРёСЃРє РєРѕСЂРЅРµР№ x1, x2
+void solves(float a, float b, float D, float &x1, float &x2){ //poisk korney x1, x2
     x1 = (-b + sqrt(D))/(2*a);
     x2 = (-b - sqrt(D))/(2*a);
 }
 int main(){
-    printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РµРЅС‚С‹ a, b, c РєРІР°РґСЂР°С‚РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ ax^2+bx+c = 0\n");
+    printf("Введите коэффиценты a, b, c квадратного уравнения ax^2+bx+c = 0\n");
     float a, b, c;
     scanf("%f%f%f", &a, &b, &c);
 
     float D = dis(a, b, c);
     if(D < 0.0)
-        printf("Р РµС€РµРЅРёР№ РЅРµС‚\n");
+        printf("Решений нет\n");
     if(D == 0.0){
-        printf("РЈСЂР°РІРЅРµРЅРёРµ РёРјРµРµС‚ СЂРѕРІРЅРѕ РѕРґРёРЅ РєРѕСЂРµРЅСЊ\n");
+        printf("Уравнение имеет ровно один корень\n");
         float x1, x2;
         solves(a, b, D, x1, x2);
         printf("x = %.6f", x1);
     }
     if(D > 0.0){
-        printf("РЈСЂР°РІРЅРµРЅРёРµ РёРјРµРµС‚ РґРІР° РєРѕСЂРЅСЏ\n");
+        printf("Уравнение имеет два корня\n");
         float x1, x2;
         solves(a, b, D, x1, x2);
         printf("x1 = %.6f\nx2 = %.6f\n", x1, x2);
