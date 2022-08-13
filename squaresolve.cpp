@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <TXLib.h>
-float dis(float a, float b, float c){ //poisk deskrimenanta
+float dis(float a, float b, float c){ //poisk deskrimenanta!
     return b*b - 4*a*c;
 }
-void solves(float a, float b, float D, float &x1, float &x2){ //poisk korney x1, x2
+void solves(float a, float b, float D, float &x1, float &x2){ //poisk korney x1, x2!
     x1 = (-b + sqrt(D))/(2*a);
     x2 = (-b - sqrt(D))/(2*a);
 }
