@@ -59,27 +59,30 @@ void write_result(char T, double x1, double x2){
         case 0:
             printf("Бесконечное множество решений\n");
             break;
-        case 1:{
-                if(x1 == NAN && x2 == NAN)
-                    printf("Решений нет\n");
+        case 1:
+            if(isnan(x1) == 1 && isnan(x2) == 1)
+                printf("Решений нет\n");
 
-                if(x1 != NAN && x2 == NAN){
-                    printf("Уравнение имеет роано одно решение\n");
-                    printf("x = %.6lf\n", x1);
-                }
-
-                if(x1 != NAN && x2 != NAN){
-                    printf("Уравнение имеет два различных решения\n");
-                    printf("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
-                }
-                break;
+            if(isnan(x1) != 1 && isnan(x2) == 1){
+                printf("Уравнение имеет роано одно решение\n");
+                printf("x = %.6lf\n", x1);
             }
+
+            if(isnan(x1) != 1 && isnan(x2) != 1){
+                printf("Уравнение имеет два различных решения\n");
+                printf("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
+            }
+
+            break;
         case 2:
             printf("Уравнение имеет ровно один корень\n");
             printf("x = %.6lf\n", x1);
             break;
         case 3:
             printf("Решений нет\n");
+            break;
+        default:
+            printf("ERROR\n");
             break;
     }
 
@@ -105,7 +108,7 @@ int main(){
             break;
 
     }
-    //printf("%lf %lf\n", x1, x2);
+
     write_result(T, x1, x2);
 
     getchar();
