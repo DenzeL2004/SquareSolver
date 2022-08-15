@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <cmath.h>
 #include <TXLib.h>
 
 float dis(float a, float b, float c){ //poisk deskrimenanta
@@ -14,9 +15,16 @@ int main(){
     printf("Введите коэффиценты a, b, c квадратного уравнения ax^2+bx+c = 0\n");
 
     float a, b, c;
-    scanf("%f%f%f", &a, &b, &c);
+    a = b = c = 0.0;
+
+    if(scanf("%lf%lf%lf", &a, &b, &c) != 3){
+        printf("Неверный ввод значений\n");
+        getchar();
+        return 0;
+    }
 
     float D = dis(a, b, c);
+
     if(D < 0.0)
         printf("Решений нет\n");
 
