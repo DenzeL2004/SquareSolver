@@ -5,10 +5,20 @@
 
 enum state {INF_ROOTS = 0, LINE = 1, SQUARE = 2, NO_ROOTS = 3, ANOTHER = 4};
 
-int read_arguments (double *a, double *b, double *c){
+void check_arguments_pointer (double *a, double *b, double *c){
     assert (*a != NULL);
     assert (*b != NULL);
     assert (*c != NULL);
+}
+
+void check_arguments_val (double a, double b, double c){
+    assert (!isnan(a));
+    assert (!isnan(b));
+    assert (!isnan(c));
+}
+
+int read_arguments (double *a, double *b, double *c){
+    check_arguments_pointer (a, b, c);
 
     if (scanf ("%lf%lf%lf", a, b, c) != 3){
         printf ("Неверный ввод значений\n");
@@ -20,6 +30,8 @@ int read_arguments (double *a, double *b, double *c){
 }
 
 char type (double a, double b, double c){
+    check_arguments_val (a, b, c);
+
     if (a == 0.0)
         if (b == 0.0)
             if (c == 0.0)
@@ -35,10 +47,12 @@ char type (double a, double b, double c){
 }
 
 double discriminant (double a, double b, double c){ //поиск дескрименанта
+    check_arguments_val (a, b, c);
     return b*b - 4*a*c;
 }
 
 void square_solve (double a, double b, double c, double *x1, double *x2){  // Решение квдратного уравнения
+    check_arguments_val (a, b, c);
     double D = discriminant (a, b, c);
 
     if (D == 0.0){
@@ -53,6 +67,9 @@ void square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
 }
 
 void line_solve (double a, double b, double *x){ // решение линейного уравнения
+    assert (!isnan(a));
+    assert (!isnan(b));
+
     *x = -b/a;
 }
 
@@ -117,10 +134,7 @@ int main(){
     if (!read_arguments (&a, &b, &c))
         return 0;
 
-    if (isnan(a) || isnan(b) || isnan(c)){
-        printf("Один из аргументов равен NAN\n");
-        return 0;
-    }
+    check_arguments_val (a, b, c);
 
     double x1 = NAN, x2 = NAN;
     char T = ANOTHER;
