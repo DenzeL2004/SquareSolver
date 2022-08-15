@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <cmath.h>
+#include <math.h>
 #include <TXLib.h>
 
 float dis(float a, float b, float c){ //poisk deskrimenanta
