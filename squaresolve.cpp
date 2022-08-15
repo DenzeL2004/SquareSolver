@@ -2,6 +2,15 @@
 #include <math.h>
 #include <TXLib.h>
 
+void read_arguments(double *a, double *b, double *c){
+
+    if(scanf("%lf%lf%lf", a, b, c) != 3){
+        printf("Неверный ввод значений\n");
+        getchar();
+        exit(0);
+    }
+}
+
 char type(double a, double b, double c){
     if(a == 0.0)
 
@@ -26,66 +35,78 @@ void search_solves(double a, double b, double D, double *x1, double *x2){ //поис
     *x2 = (-b - sqrt(D))/(2*a);
 }
 
-void solve1(double a, double b, double c){  // Решение квдратного уравнения
+void solve1(double a, double b, double c, double *x1, double *x2){  // Решение квдратного уравнения
 
     double D = dis(a, b, c);
 
-    if(D < 0.0)
-        printf("Решений нет\n");
-
     if(D == 0.0){
-        printf("Уравнение имеет ровно один корень\n");
-        double x1, x2;
-        search_solves(a, b, D, &x1, &x2);
-        printf("x = %.6lf", x1);
+        search_solves(a, b, D, x1, x2);
+        *x2 = NAN;
     }
 
-    if(D > 0.0){
-        printf("Уравнение имеет два корня\n");
-        double x1, x2;
-        search_solves(a, b, D, &x1, &x2);
-        printf("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
-    }
+    if(D > 0.0)
+        search_solves(a, b, D, x1, x2);
+
 }
 
-void solve2(double a, double b){ // решение линейного уравнения
-    double x;
-    x = 0.0;
-    x = -b/a;
-    printf("Уравнение имеет ровно один корень\n");
-    printf("x = %.6lf", x);
+void solve2(double a, double b, double *x){ // решение линейного уравнения
+    *x = -b/a;
+}
+
+void write_result(char T, double x1, double x2){
+
+    switch(T){
+        case 0:
+            printf("Бесконечное множество решений\n");
+            break;
+        case 1:{
+                if(x1 == NAN && x2 == NAN)
+                    printf("Решений нет\n");
+
+                if(x1 != NAN && x2 == NAN){
+                    printf("Уравнение имеет роано одно решение\n");
+                    printf("x = %.6lf\n", x1);
+                }
+
+                if(x1 != NAN && x2 != NAN){
+                    printf("Уравнение имеет два различных решения\n");
+                    printf("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
+                }
+                break;
+            }
+        case 2:
+            printf("Уравнение имеет ровно один корень\n");
+            printf("x = %.6lf\n", x1);
+            break;
+        case 3:
+            printf("Решений нет\n");
+            break;
+    }
+
 }
 
 int main(){
     printf("Введите коэффиценты a, b, c квадратного уравнения ax^2+bx+c = 0\n");
 
-    double a, b, c;
-    a = b = c = 0.0;
+    double a = NAN, b = NAN, c = NAN;
+    read_arguments(&a, &b, &c);
 
-    if(scanf("%lf%lf%lf", &a, &b, &c) != 3){
-        printf("Неверный ввод значений\n");
-        getchar();
-        return 0;
-    }
+    char T = type(a, b, c);
+    double x1 = NAN, x2 = NAN;
 
-    switch(type(a, b, c)){
-        case 0: //Тривиальное уравнение
-            printf("Бесконечное множество решений\n");
-            break;
+    switch(T){
         case 1: //Квадратное уравнение
-            solve1(a, b, c);
+            solve1(a, b, c, &x1, &x2);
             break;
         case 2: //Линейное уравнение
-            solve2(b, c);
-            break;
-        case 3: //Решений нет
-            printf("Решение нет\n");
+            solve2(b, c, &x1);
             break;
         default:
-            printf("ERROR\n");
             break;
 
     }
+    //printf("%lf %lf\n", x1, x2);
+    write_result(T, x1, x2);
 
     getchar();
     return 0;
