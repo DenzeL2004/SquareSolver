@@ -1,5 +1,5 @@
-/** \brief сравнивает нецелочисленные типы с 0
-    \param n число, которое нужно проверить
+/** \brief compares a number with zero
+    \param n input number
     \code
     bool is_zero (double n){
         return (n == 0.0) || (fabs(n) < EPS);
