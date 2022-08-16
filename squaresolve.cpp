@@ -106,6 +106,10 @@ char line_solve (double a, double b, double *x){ // решение линейного уравнени€
     return 1;
 }
 
+bool is_zero (double n){
+    return (n == 0.0) || (fabs(n) < EPS);
+}
+
 int read_arguments (double *a, double *b, double *c){ //считывание значений
     assert (a != NULL);
     assert (b != NULL);
@@ -113,7 +117,6 @@ int read_arguments (double *a, double *b, double *c){ //считывание значений
 
     if (scanf ("%lf%lf%lf", a, b, c) != 3){
         printf ("Ќеверный ввод значений\n");
-        getchar();
         return 0;
     }
 
@@ -149,8 +152,4 @@ void write_result (char count_roots, double x1, double x2){ //¬ывод кол-ва корне
 
     printf ("ERROR\n");
     return;
-}
-
-bool is_zero (double n){
-    return (n == 0.0) || (fabs(n) < EPS);
 }
