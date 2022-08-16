@@ -7,16 +7,6 @@
 const long double EPS = 1e-9;
 enum state {INF_ROOTS = -1, NO_ROOTS = 0, ONE_ROOT = 1, SQUARE = 2, ANOTHER = 3};
 
-/** \brief сравнивает нецелочисленные типы с 0
-    \param число, которое нужно проверить
-    \code
-    bool is_zero (double n){
-        return (n == 0.0) || (fabs(n) < EPS);
-    }
-    \endcode
-*/
-bool is_zero (double n);
-
 int main(){
     printf ("¬ведите коэффиценты a, b, c квадратного уравнени€ ax^2+bx+c = 0\n");
 
