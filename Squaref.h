@@ -1,3 +1,11 @@
+/** \brief сравнивает нецелочисленные типы с 0
+    \param n число, которое нужно проверить
+    \code
+    bool is_zero (double n){
+        return (n == 0.0) || (fabs(n) < EPS);
+    }
+    \endcode
+*/
 int read_arguments (double *a, double *b, double *c);
 char type (double a, double b, double c);
 double discriminant (double a, double b, double c);
