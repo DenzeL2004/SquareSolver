@@ -4,8 +4,14 @@
 #include <assert.h>
 #include "Squaref.h"
 
-const long double EPS = 1e-9;
-enum state {INF_ROOTS = -1, NO_ROOTS = 0, ONE_ROOT = 1, SQUARE = 2, ANOTHER = 3};
+const long double EPS = 1e-9; ///constant equal to \f$\ 10^-9\f$
+enum state {
+    INF_ROOTS = -1, ///< The equation has an infinite number of solutions
+    NO_ROOTS = 0, ///< The equation has no solutions
+    ONE_ROOT = 1, ///< The equation has a maximum of one solutions
+    SQUARE = 2, ///< The equation has a maximum of two solutions
+    ANOTHER = 3 ///< Another case
+};
 
 int main(){
     printf ("Введите коэффиценты a, b, c квадратного уравнения ax^2+bx+c = 0\n");
@@ -74,7 +80,7 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
 
     double D = discriminant (a, b, c);
 
-    if (is_zero(D)){
+    if (is_zero (D)){
         *x1 = -b/(2*a);
         return 1;
     }
@@ -135,7 +141,7 @@ void write_result (char count_roots, double x1, double x2){ //Вывод кол-ва корне
     }
 
     if (count_roots == ONE_ROOT){
-        printf ("Уравнение имеет роано одно решение\n");
+        printf ("Уравнение имеет ровно одно решение\n");
 
         if (is_zero(x1))
             x1 = -x1;
