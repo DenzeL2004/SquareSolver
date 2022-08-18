@@ -1,7 +1,7 @@
 #ifndef _SQUARE_H_
 #define _SQUARE_H_
 
-extern const long double EPS; ///< Global constant equal to \f$\ 10^{-9}\f$
+const long double EPS = 1e-9; ///< Global constant equal to \f$\ 10^{-9}\f$
 
 enum state {
     INF_ROOTS = -1, ///< The equation has an infinite number of solutions
@@ -19,7 +19,7 @@ enum state {
     \param T type of equation
     \return Number of solutions to the original equation
 */
-char count_solves (double a, double b, double c, double *x1, double *x2, char *T);
+char solve (double a, double b, double c, double *x1, double *x2, char *T);
 
 /** \brief Determines the type of equation
     \version 1.0.0
@@ -27,7 +27,7 @@ char count_solves (double a, double b, double c, double *x1, double *x2, char *T
     \param a, b, c input parameters of equation
     \return Type of equation
 */
-char type (double a, double b, double c);
+char get_type (double a, double b, double c);
 
 /** \brief Finding the discriminant of second degree equation
     \version 1.0.0
@@ -87,7 +87,7 @@ bool is_zero (double n);
 int read_arguments (double *a, double *b, double *c);
 
 /** \brief Output of the number of roots and their values
-    \version 1.0.0
+    \version 1.1.0
     \param count_roots - number of roots of the equation
     \param x1, x2 roots of equation
 */

@@ -13,7 +13,7 @@ int main(){
 
     double x1 = NAN, x2 = NAN;
     char T = ANOTHER, count_roots = 0;
-    count_roots = count_solves (a, b, c, &x1, &x2, &T);
+    count_roots = solve (a, b, c, &x1, &x2, &T);
     write_result (count_roots, x1, x2);
 
     getchar();

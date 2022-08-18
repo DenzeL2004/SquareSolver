@@ -4,12 +4,11 @@
 #include <assert.h>
 #include "Squaref.h"
 
-const long double EPS = 1e-9;
-
-char count_solves (double a, double b, double c, double *x1, double *x2, char *T){
+char solve (double a, double b, double c, double *x1, double *x2, char *T){
     assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
+    assert (&a != NULL && &b != NULL && &c != NULL && "ptrs must not be NULL");
 
-    *T = type (a, b, c);
+    *T = get_type (a, b, c);
     switch (*T){
         case INF_ROOTS:
             return -1;
@@ -28,8 +27,9 @@ char count_solves (double a, double b, double c, double *x1, double *x2, char *T
     }
 }
 
-char type (double a, double b, double c){
+char get_type (double a, double b, double c){
     assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
+    assert (&a != NULL && &b != NULL && &c != NULL && "ptrs must not be NULL");
 
     if (is_zero(a))
         if (is_zero(b))
@@ -47,11 +47,13 @@ char type (double a, double b, double c){
 
 char square_solve (double a, double b, double c, double *x1, double *x2){  // Решение квдратного уравнения
     assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
+    assert (&a != NULL && &b != NULL && &c != NULL && "ptrs must not be NULL");
+    assert(!is_zero(a) && "must not be zero");
 
     double D = discriminant (a, b, c);
 
-    if (is_zero (D)){
-        *x1 = -b/(2*a);
+    if (is_zero(D)){
+        *x1 = -b / (2*a);
         return 1;
     }
 
@@ -59,8 +61,8 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
         return 0;
 
     if (D > 0.0){
-        *x1 = (-b + sqrt(D))/(2*a);
-        *x2 = (-b - sqrt(D))/(2*a);
+        *x1 = (-b + sqrt(D)) / (2*a);
+        *x2 = (-b - sqrt(D)) / (2*a);
         return 2;
     }
 
@@ -69,14 +71,17 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
 
 double discriminant (double a, double b, double c){ //поиск дескрименанта
     assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
+    assert (&a != NULL && &b != NULL && &c != NULL && "ptrs must not be NULL");
 
     return b*b - 4*a*c;
 }
 
 char line_solve (double a, double b, double *x){ // решение линейного уравнения
     assert (!isnan(a) && !isnan(b) && "vals must not be NAN");
+    assert (&a != NULL && &b != NULL && "ptrs must not be NULL");
+    assert(!is_zero(a) && "must not be zero");
 
-    *x = -b/a;
+    *x = -b / a;
 
     return 1;
 }
@@ -96,33 +101,34 @@ int read_arguments (double *a, double *b, double *c){ //считывание значений
     return 1;
 }
 
-void write_result (char count_roots, double x1, double x2){ //Вывод кол-ва корней
-    if (count_roots == INF_ROOTS){
-        printf ("Бесконечное множество решений\n");
-        return;
+void write_result (char count_roots, double x1, double x2){
+    switch (count_roots){
+        case INF_ROOTS:
+            printf ("Бесконечное множество решений\n");
+            break;
+
+        case SQUARE:
+            printf ("Уравнение имеет два различных решения\n");
+            printf ("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
+            break;
+
+        case ONE_ROOT:
+            printf ("Уравнение имеет ровно одно решение\n");
+
+            if (is_zero(x1))
+                x1 = -x1;
+
+            printf ("x = %.6lf\n", x1);
+            break;
+
+        case NO_ROOTS:
+            printf ("Решений нет\n");
+            break;
+
+        default:
+            printf ("ERROR\n");
+            break;
     }
 
-    if (count_roots == NO_ROOTS){
-        printf ("Решений нет\n");
-        return;
-    }
-
-    if (count_roots == ONE_ROOT){
-        printf ("Уравнение имеет ровно одно решение\n");
-
-        if (is_zero(x1))
-            x1 = -x1;
-
-        printf ("x = %.6lf\n", x1);
-        return;
-    }
-
-    if (count_roots == SQUARE){
-        printf ("Уравнение имеет два различных решения\n");
-        printf ("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
-        return;
-    }
-
-    printf ("ERROR\n");
     return;
 }
