@@ -53,7 +53,7 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
     double D = discriminant (a, b, c);
 
     if (is_zero(D)){
-        *x1 = -b / (2 * a);
+        *x1 = -b / (2*a);
         return 1;
     }
 
@@ -61,8 +61,8 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
         return 0;
 
     if (D > 0.0){
-        *x1 = (-b + sqrt(D)) / (2 * a);
-        *x2 = (-b - sqrt(D)) / (2 * a);
+        *x1 = (-b + sqrt(D)) / (2*a);
+        *x2 = (-b - sqrt(D)) / (2*a);
         return 2;
     }
 
@@ -73,7 +73,7 @@ double discriminant (double a, double b, double c){ //поиск дескрименанта
     assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
     assert (&a != NULL && &b != NULL && &c != NULL && "ptrs must not be NULL");
 
-    return b * b - 4 * a * c;
+    return b*b - 4*a*c;
 }
 
 char line_solve (double a, double b, double *x){ // решение линейного уравнения
