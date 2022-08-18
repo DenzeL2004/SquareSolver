@@ -63,6 +63,8 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
         *x2 = (-b - sqrt(D))/(2*a);
         return 2;
     }
+
+    return ANOTHER;
 }
 
 double discriminant (double a, double b, double c){ //поиск дескрименанта
@@ -80,7 +82,7 @@ char line_solve (double a, double b, double *x){ // решение линейного уравнения
 }
 
 bool is_zero (double n){
-    return (n == 0.0) || (fabs(n) < EPS);
+    return fabs(n) < EPS;
 }
 
 int read_arguments (double *a, double *b, double *c){ //считывание значений
