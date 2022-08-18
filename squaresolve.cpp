@@ -4,36 +4,10 @@
 #include <assert.h>
 #include "Squaref.h"
 
-const long double EPS = 1e-9; ///constant equal to \f$\ 10^-9\f$
-enum state {
-    INF_ROOTS = -1, ///< The equation has an infinite number of solutions
-    NO_ROOTS = 0, ///< The equation has no solutions
-    ONE_ROOT = 1, ///< The equation has a maximum of one solutions
-    SQUARE = 2, ///< The equation has a maximum of two solutions
-    ANOTHER = 3 ///< Another case
-};
-
-int main(){
-    printf ("Введите коэффиценты a, b, c квадратного уравнения ax^2+bx+c = 0\n");
-
-    double a = NAN, b = NAN, c = NAN;
-
-    if (!read_arguments (&a, &b, &c))
-        return 0;
-
-    double x1 = NAN, x2 = NAN;
-    char T = ANOTHER, count_roots = 0;
-    count_roots = count_solves (a, b, c, &x1, &x2, &T);
-    write_result (count_roots, x1, x2);
-
-    getchar();
-    return 0;
-}
+const long double EPS = 1e-9;
 
 char count_solves (double a, double b, double c, double *x1, double *x2, char *T){
-    assert (!isnan(a));
-    assert (!isnan(b));
-    assert (!isnan(c));
+    assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
 
     *T = type (a, b, c);
     switch (*T){
@@ -55,9 +29,7 @@ char count_solves (double a, double b, double c, double *x1, double *x2, char *T
 }
 
 char type (double a, double b, double c){
-    assert (!isnan(a));
-    assert (!isnan(b));
-    assert (!isnan(c));
+    assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
 
     if (is_zero(a))
         if (is_zero(b))
@@ -74,9 +46,7 @@ char type (double a, double b, double c){
 }
 
 char square_solve (double a, double b, double c, double *x1, double *x2){  // Решение квдратного уравнения
-    assert (!isnan(a));
-    assert (!isnan(b));
-    assert (!isnan(c));
+    assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
 
     double D = discriminant (a, b, c);
 
@@ -96,16 +66,13 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // Ре
 }
 
 double discriminant (double a, double b, double c){ //поиск дескрименанта
-    assert (!isnan(a));
-    assert (!isnan(b));
-    assert (!isnan(c));
+    assert (!isnan(a) && !isnan(b) && !isnan(c) && "vals must not be NAN");
 
     return b*b - 4*a*c;
 }
 
 char line_solve (double a, double b, double *x){ // решение линейного уравнения
-    assert (!isnan(a));
-    assert (!isnan(b));
+    assert (!isnan(a) && !isnan(b) && "vals must not be NAN");
 
     *x = -b/a;
 
@@ -117,9 +84,7 @@ bool is_zero (double n){
 }
 
 int read_arguments (double *a, double *b, double *c){ //считывание значений
-    assert (a != NULL);
-    assert (b != NULL);
-    assert (c != NULL);
+    assert (a != NULL && b != NULL && c != NULL && "ptrs must not be NULL");
 
     if (scanf ("%lf%lf%lf", a, b, c) != 3){
         printf ("Неверный ввод значений\n");
