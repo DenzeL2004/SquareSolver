@@ -52,8 +52,10 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // so
 
     double D = discriminant (a, b, c);
 
+    a *= 2;
+
     if (is_zero(D)){
-        *x1 = -b / (2*a);
+        *x1 = -b / a;
         return ONE_ROOT;
     }
 
@@ -61,7 +63,6 @@ char square_solve (double a, double b, double c, double *x1, double *x2){  // so
         return NO_ROOTS;
 
     D = sqrt(D);
-    a *= 2;
 
     if (D > 0.0){
         *x1 = (-b + D) / a;
