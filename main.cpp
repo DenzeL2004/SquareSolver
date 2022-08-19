@@ -4,7 +4,7 @@
 #include "Squaref.h"
 
 int main(){
-    printf ("Введите коэффиценты a, b, c квадратного уравнения ax^2+bx+c = 0\n");
+    printf ("Enter the coefficients a, b, c of the second degree equation ax^2+bx+c = 0\n");
 
     double a = NAN, b = NAN, c = NAN;
 
