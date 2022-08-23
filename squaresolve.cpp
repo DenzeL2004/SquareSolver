@@ -2,11 +2,18 @@
 #include <math.h>
 #include <TXLib.h>
 #include <assert.h>
-#include "Squaref.h"
+#include "headers\Squaref.h"
+#include "headers\Status_codef.h"
 
 char solve_square (double a, double b, double c, double *x1, double *x2){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
     assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
+
+    check_finite (a);
+    check_finite (b);
+    check_finite (c);
+    check_pointer (x1);
+    check_pointer (x2);
 
     char type_equation = get_Type (a, b, c);
     switch (type_equation){
@@ -30,6 +37,10 @@ char solve_square (double a, double b, double c, double *x1, double *x2){
 char get_Type (double a, double b, double c){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
 
+    check_finite (a);
+    check_finite (b);
+    check_finite (c);
+
     if (is_zero (a))
         if (is_zero (b))
             if (is_zero (c))
@@ -48,6 +59,13 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
     assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
     assert(!is_zero (a) && "must not be zero");
+
+    check_finite (a);
+    check_finite (b);
+    check_finite (c);
+    check_pointer (x1);
+    check_pointer (x2);
+    check_zero (a);
 
     double D = Discriminant (a, b, c);
 
@@ -75,6 +93,10 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
 double Discriminant (double a, double b, double c){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
 
+    check_finite (a);
+    check_finite (b);
+    check_finite (c);
+
     return b*b - 4*a*c;
 }
 
@@ -82,6 +104,11 @@ char liner_equation (double a, double b, double *x){
     assert (isfinite (a) && isfinite (b) && "vals must not be NAN/INF");
     assert (x != NULL && "ptrs must not be NULL");
     assert (!is_zero (a) && "must not be zero");
+
+    check_finite (a);
+    check_finite (b);
+    check_pointer (x);
+    check_zero (a);
 
     *x = -b / a;
 
@@ -91,11 +118,15 @@ char liner_equation (double a, double b, double *x){
 bool is_zero (double n){
     assert (isfinite (n) && "vals must not be NAN/INF");
 
+    check_finite (n);
+
     return fabs (n) < Eps;
 }
 
 double fix_zero (double n){
     assert (isfinite (n) && "vals must not be NAN/INF");
+
+    check_finite (n);
 
     if (is_zero (n))
         return 0.0;
@@ -104,6 +135,10 @@ double fix_zero (double n){
 
 bool read_arguments (double *a, double *b, double *c){
     assert (a != NULL && b != NULL && c != NULL && "ptrs must not be NULL");
+
+    check_pointer (a);
+    check_pointer (b);
+    check_pointer (c);
 
     if (scanf ("%lf%lf%lf", a, b, c) != 3){
         printf ("Invalid value entry\n");

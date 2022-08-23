@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <TXLib.h>
-#include "Squaref.h"
+#include "headers\Squaref.h"
 
 int main(){
     printf ("Enter the coefficients a, b, c of the second degree equation ax^2+bx+c = 0\n");
@@ -9,7 +9,7 @@ int main(){
     double a = NAN, b = NAN, c = NAN;
 
     if (!read_arguments (&a, &b, &c))
-        return 0;
+        return -1;
 
     double x1 = NAN, x2 = NAN;
     char count_roots = 0;
