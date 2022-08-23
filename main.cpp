@@ -12,10 +12,9 @@ int main(){
         return 0;
 
     double x1 = NAN, x2 = NAN;
-    char T = ANOTHER, count_roots = 0;
-    count_roots = solve (a, b, c, &x1, &x2, &T);
+    char count_roots = 0;
+    count_roots = solve_square (a, b, c, &x1, &x2);
     write_result (count_roots, x1, x2);
 
-    getchar();
     return 0;
 }

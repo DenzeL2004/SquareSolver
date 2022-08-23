@@ -1,7 +1,7 @@
 #ifndef _SQUARE_H_
 #define _SQUARE_H_
 
-const long double EPS = 1e-9; ///< Global constant equal to \f$\ 10^{-9}\f$
+const long double Eps = 1e-9; ///< Global constant equal to \f$\ 10^{-9}\f$
 
 /**
     \enum state
@@ -18,42 +18,42 @@ enum state {
 /** \brief Solution of the original equation
     \version 1.0.0
     \note The function returns one of the enum state's values
-    \param a input parameters of equation
-    \param b input parameters of equatio
-    \param c input parameters of equatio
-    \param x1 roots of equation
-    \param x2 roots of equation
-    \param T type of equation
+    \param [in] a input parameters of equation
+    \param [in] b input parameters of equation
+    \param [in] c input parameters of equation
+    \param [out] x1 pointer of first equation root
+    \param [out] x2 pointer of second equation root
     \return Number of solutions to the original equation
 */
-char solve (double a, double b, double c, double *x1, double *x2, char *T);
+char solve_square (double a, double b, double c, double *x1, double *x2);
 
 /** \brief Determines the type of equation
     \version 1.0.0
     \note The function returns one of the enum state's values
-    \param a input parameters of equation
-    \param b input parameters of equation
-    \param c input parameters of equation
+    \param [in] a input parameters of equation
+    \param [in] b input parameters of equation
+    \param [in] c input parameters of equation
     \return Type of equation
 */
-char get_type (double a, double b, double c);
+char get_Type (double a, double b, double c);
 
 /** \brief Finding the discriminant of second degree equation
     \version 1.0.0
-    \param a input parameters of equation
-    \param b input parameters of equation
-    \param c input parameters of equation
+    \param [in] a input parameters of equation
+    \param [in] b input parameters of equation
+    \param [in] c input parameters of equation
     \return Value of discriminant
 */
-double discriminant (double a, double b, double c);
+double Discriminant (double a, double b, double c);
 
 /** \brief Solution of a second degree equation
     \version 1.0.0
-    \param a input parameters of equation
-    \param b input parameters of equation
-    \param c input parameters of equation
-    \param x1 roots of equation
-    \param x2 roots of equation
+    \note The function returns one of the enum state's values
+    \param [in] a input parameters of equation
+    \param [in] b input parameters of equation
+    \param [in] c input parameters of equation
+    \param [out] x1 pointer of first equation root
+    \param [out] x2 pointer of second equation root
     \return Number of roots
     \note if D = 0, x1 is assigned the value of the root, x2 does not change
     \note if D < 0, x1 and x2 do not change
@@ -77,48 +77,50 @@ double discriminant (double a, double b, double c);
         }
     \endcode
 */
-char square_solve (double a, double b, double c, double *x1, double *x2);
+char square_equation (double a, double b, double c, double *x1, double *x2);
 
 /** \brief Solution of a linear equation
     \note The function finds the root when the parameter a is zero
     \version 1.0.0
-    \param a input parameters of equation
-    \param b input parameters of equation
-    \param x root of equation
+    \note The function returns one of the enum state's values
+    \param [in] a input parameters of equation
+    \param [in] b input parameters of equation
+    \param [out] x pointer of equation root
     \return Number of roots
 */
-char line_solve (double a, double b, double *x);
+char liner_equation (double a, double b, double *x);
 
 /** \brief Comparing a number to zero
     \version 1.0.0
-    \param n input parameter
+    \param [in] n input parameter
     \return False - number is not zero, true - number is zero
 */
 bool is_zero (double n);
 
 /** \brief Ñorrect zero value
     \version 1.0.0
-    \param n input parameter
-    \note if the value is zero the program must not return -0.00
+    \param [in] n input parameter
+    \note If the value is zero the program must not return -0.00
     \return returns zero if the number is zero, otherwise returns the number itself
 */
 double fix_zero (double n);
 
 /** \brief Reading input parameters
     \version 1.0.0
-    \param a input parameters of equation
-    \param b input parameters of equation
-    \param c input parameters of equation
+    \note The function returns one of the enum state's values
+    \param [in] a input parameters of equation
+    \param [in] b input parameters of equation
+    \param [in] c input parameters of equation
     \return False - data entered incorrectly, True - data entered correctly
 */
 bool read_arguments (double *a, double *b, double *c);
 
 /** \brief Output of the number of roots and their values
     \version 1.1.0
-    \param count_roots - number of roots of the equation
-    \param x1 roots of equation
-    \param x2 roots of equation
+    \param [in] count_roots number of roots of the equation
+    \param [in] x1 value of second equation root
+    \param [in] x2 value of equation
 */
-void write_result (char T, double x1, double x2);
+void write_result (char count_roots, double x1, double x2);
 
 #endif
