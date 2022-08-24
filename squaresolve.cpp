@@ -1,19 +1,23 @@
 #include <stdio.h>
 #include <math.h>
-#include <TXLib.h>
 #include <assert.h>
 #include "headers\Squaref.h"
-#include "headers\Status_codef.h"
+
+#define my_assert(condition) {                                          \
+    if (!(condition))                                                   \
+        printf ("ERROR in %s in line %d in file %s in function %s\n",   \
+                #condition, __LINE__, __FILE__, __PRETTY_FUNCTION__);     \
+}
 
 char solve_square (double a, double b, double c, double *x1, double *x2){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
     assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
 
-    check_finite (a);
-    check_finite (b);
-    check_finite (c);
-    check_pointer (x1);
-    check_pointer (x2);
+    my_assert (isfinite (a));
+    my_assert (isfinite (b));
+    my_assert (isfinite (c));
+    my_assert (x1 != NULL);
+    my_assert (x2 != NULL);
 
     char type_equation = get_Type (a, b, c);
     switch (type_equation){
@@ -37,9 +41,9 @@ char solve_square (double a, double b, double c, double *x1, double *x2){
 char get_Type (double a, double b, double c){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
 
-    check_finite (a);
-    check_finite (b);
-    check_finite (c);
+    my_assert (isfinite (a));
+    my_assert (isfinite (b));
+    my_assert (isfinite (c));
 
     if (is_zero (a))
         if (is_zero (b))
@@ -60,12 +64,12 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
     assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
     assert(!is_zero (a) && "must not be zero");
 
-    check_finite (a);
-    check_finite (b);
-    check_finite (c);
-    check_pointer (x1);
-    check_pointer (x2);
-    check_zero (a);
+    my_assert (isfinite (a));
+    my_assert (isfinite (b));
+    my_assert (isfinite (c));
+    my_assert (x1 != NULL);
+    my_assert (x2 != NULL);
+    my_assert (!is_zero (a));
 
     double D = Discriminant (a, b, c);
 
@@ -93,9 +97,9 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
 double Discriminant (double a, double b, double c){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
 
-    check_finite (a);
-    check_finite (b);
-    check_finite (c);
+    my_assert (isfinite (a));
+    my_assert (isfinite (b));
+    my_assert (isfinite (c));
 
     return b*b - 4*a*c;
 }
@@ -105,10 +109,10 @@ char liner_equation (double a, double b, double *x){
     assert (x != NULL && "ptrs must not be NULL");
     assert (!is_zero (a) && "must not be zero");
 
-    check_finite (a);
-    check_finite (b);
-    check_pointer (x);
-    check_zero (a);
+    my_assert (isfinite (a));
+    my_assert (isfinite (a));
+    my_assert (x != NULL);
+    my_assert (!is_zero (a));
 
     *x = -b / a;
 
@@ -118,7 +122,7 @@ char liner_equation (double a, double b, double *x){
 bool is_zero (double n){
     assert (isfinite (n) && "vals must not be NAN/INF");
 
-    check_finite (n);
+    my_assert (isfinite (n));
 
     return fabs (n) < Eps;
 }
@@ -126,7 +130,7 @@ bool is_zero (double n){
 double fix_zero (double n){
     assert (isfinite (n) && "vals must not be NAN/INF");
 
-    check_finite (n);
+    my_assert (isfinite (n));
 
     if (is_zero (n))
         return 0.0;
@@ -136,9 +140,9 @@ double fix_zero (double n){
 bool read_arguments (double *a, double *b, double *c){
     assert (a != NULL && b != NULL && c != NULL && "ptrs must not be NULL");
 
-    check_pointer (a);
-    check_pointer (b);
-    check_pointer (c);
+    my_assert (a != NULL);
+    my_assert (b != NULL);
+    my_assert (c != NULL);
 
     if (scanf ("%lf%lf%lf", a, b, c) != 3){
         printf ("Invalid value entry\n");
@@ -146,11 +150,11 @@ bool read_arguments (double *a, double *b, double *c){
     }
 
     char ch = 0;
-    while ((ch = (char)getchar()) != '\n'){
+    while ((ch = (char)getchar()) != '\n' && ch != EOF){
         if (ch == ' ' || ch == '\t')
             continue;
         else{
-            printf("Too many values\n");
+            printf ("Too many values\n");
             return false;
         }
 
@@ -166,11 +170,11 @@ void write_result (char count_roots, double x1, double x2){
             break;
 
         case SQUARE:
-            if (is_zero(x1))
-                x1 = fix_zero(x1);
+            if (is_zero (x1))
+                x1 = fix_zero (x1);
 
-            if (is_zero(x2))
-                x2 = fix_zero(x2);
+            if (is_zero (x2))
+                x2 = fix_zero (x2);
 
             printf ("Equation has two different solutions\n");
             printf ("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
@@ -179,8 +183,8 @@ void write_result (char count_roots, double x1, double x2){
         case ONE_ROOT:
             printf ("Equation has exactly one solution\n");
 
-            if (is_zero(x1))
-                x1 = fix_zero(x1);
+            if (is_zero (x1))
+                x1 = fix_zero (x1);
 
             printf ("x = %.6lf\n", x1);
             break;

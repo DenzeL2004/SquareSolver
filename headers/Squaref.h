@@ -9,10 +9,10 @@ const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
 */
 enum state {
     INF_ROOTS = -1, ///< The equation has an infinite number of solutions
-    NO_ROOTS = 0, ///< The equation has no solutions
-    ONE_ROOT = 1, ///< The equation has a maximum of one solutions
-    SQUARE = 2, ///< The equation has a maximum of two solutions
-    ANOTHER = 3 ///< Another case
+    NO_ROOTS = 0,   ///< The equation has no solutions
+    ONE_ROOT = 1,   ///< The equation has a maximum of one solutions
+    SQUARE = 2,     ///< The equation has a maximum of two solutions
+    ANOTHER = 3     ///< Another case
 };
 
 /** \brief Solution of the original equation
@@ -106,7 +106,7 @@ bool is_zero (double n);
 double fix_zero (double n);
 
 /** \brief Reading input parameters
-    \version 1.0.0
+    \version 1.1.0
     \note The function returns one of the enum state's values
     \param [in] a input parameters of equation
     \param [in] b input parameters of equation

@@ -1,9 +1,13 @@
+#define TEST
 #include <stdio.h>
 #include <math.h>
-#include <TXLib.h>
 #include "headers\Squaref.h"
+#include "headers\Testf.h"
 
 int main(){
+#ifdef TEST
+    unit_test();
+#else
     printf ("Enter the coefficients a, b, c of the second degree equation ax^2+bx+c = 0\n");
 
     double a = NAN, b = NAN, c = NAN;
@@ -17,4 +21,5 @@ int main(){
     write_result (count_roots, x1, x2);
 
     return 0;
+#endif
 }
