@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-#include <assert.h>
 #include "headers\Squaref.h"
 #include "headers\Generals.h"
 
 char solve_square (double a, double b, double c, double *x1, double *x2){
-    assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
-    assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
-
     is_error (isfinite (a));
     is_error (isfinite (b));
     is_error (isfinite (c));
@@ -34,8 +30,6 @@ char solve_square (double a, double b, double c, double *x1, double *x2){
 }
 
 char get_Type (double a, double b, double c){
-    assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
-
     is_error (isfinite (a));
     is_error (isfinite (b));
     is_error (isfinite (c));
@@ -55,10 +49,6 @@ char get_Type (double a, double b, double c){
 }
 
 char square_equation (double a, double b, double c, double *x1, double *x2){
-    assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
-    assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
-    assert(!is_zero (a) && "must not be zero");
-
     is_error (isfinite (a));
     is_error (isfinite (b));
     is_error (isfinite (c));
@@ -90,8 +80,6 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
 }
 
 double Discriminant (double a, double b, double c){
-    assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
-
     is_error (isfinite (a));
     is_error (isfinite (b));
     is_error (isfinite (c));
@@ -100,10 +88,6 @@ double Discriminant (double a, double b, double c){
 }
 
 char liner_equation (double a, double b, double *x){
-    assert (isfinite (a) && isfinite (b) && "vals must not be NAN/INF");
-    assert (x != NULL && "ptrs must not be NULL");
-    assert (!is_zero (a) && "must not be zero");
-
     is_error (isfinite (a));
     is_error (isfinite (a));
     is_error (x != NULL);
@@ -115,8 +99,6 @@ char liner_equation (double a, double b, double *x){
 }
 
 bool read_arguments (double *a, double *b, double *c){
-    assert (a != NULL && b != NULL && c != NULL && "ptrs must not be NULL");
-
     is_error (a != NULL);
     is_error (b != NULL);
     is_error (c != NULL);

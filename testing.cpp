@@ -6,13 +6,12 @@
 
 const int Cnt_test = 6;
 
-Parameters paramet[Cnt_test] = {{1,  2, 3,  NO_ROOTS,          NAN,  NAN},
+Parameters paramet[Cnt_test] = {{1,  2, 3,  NO_ROOTS,           NAN, NAN},
                                 {1, -2, 1,  ONE_ROOT,             1, NAN},
                                 {0,  0, 0, INF_ROOTS,           NAN, NAN},
                                 {0,  3, 1,  ONE_ROOT, -0.3333333334, NAN},
                                 {0,  0, 3,  NO_ROOTS,           NAN, NAN},
                                 {1,  3, 2,    SQUARE,            -1,  -2}};
-
 
 void unit_test(){
     for (int current_test = 0; current_test < Cnt_test; current_test++){
@@ -32,8 +31,8 @@ void unit_test(){
 }
 
 bool check_equality (double cur_x1, double cur_x2, char cur_count_roots, Parameters ans_param, int test_number){
-    printf ("TEST NUMBER %d\n", test_number);
-    print_colour (YELLOW, "Input arguments:\n");
+    print_colour (YELLOW, "TEST NUMBER %d\n", test_number);
+    print_colour (BLUE, "Input arguments:\n");
     printf ("a = %lf\nb = %lf\nc = %lf\n", ans_param.a, ans_param.b, ans_param.c);
     putchar ('\n');
 
@@ -127,4 +126,3 @@ void print_result (const char colour[], int count_roots){
             break;
     }
 }
-

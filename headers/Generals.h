@@ -3,6 +3,7 @@
 
 const char RESET[]  =     "\033[0m";
 const char RED[]    =  "\033[1;31m";
+const char BLUE[]   =  "\033[1;36m";
 const char GREEN[]  =  "\033[1;32m";
 const char YELLOW[] =  "\033[1;33m";
 
@@ -13,6 +14,11 @@ const char YELLOW[] =  "\033[1;33m";
 }
 
 const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
+
+enum Flags{
+    NOTHING = 0,
+    TEST_FLAG = 1
+};
 
 /** \brief Comparison of double variables
     \version 1.0.0
@@ -42,6 +48,8 @@ double fix_zero (double num);
     \param [in] Colour you want to paint
     \param [in] Line to be colored
 */
-void print_colour (const char colour[], const char str[]);
+void print_colour (char const colour[], char const fmt[], ...);
+
+char parsing (int argc, char *argv[]);
 
 #endif
