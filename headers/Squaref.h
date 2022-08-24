@@ -1,13 +1,11 @@
 #ifndef _SQUARE_H_
 #define _SQUARE_H_
 
-const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
-
 /**
-    \enum state
+    \enum State
     \brief Represents the number of roots of the equation
 */
-enum state {
+enum State {
     INF_ROOTS = -1, ///< The equation has an infinite number of solutions
     NO_ROOTS = 0,   ///< The equation has no solutions
     ONE_ROOT = 1,   ///< The equation has a maximum of one solutions
@@ -89,21 +87,6 @@ char square_equation (double a, double b, double c, double *x1, double *x2);
     \return Number of roots
 */
 char liner_equation (double a, double b, double *x);
-
-/** \brief Comparing a number to zero
-    \version 1.0.0
-    \param [in] n input parameter
-    \return False - number is not zero, true - number is zero
-*/
-bool is_zero (double n);
-
-/** \brief Ñorrect zero value
-    \version 1.0.0
-    \param [in] n input parameter
-    \note If the value is zero the program must not return -0.00
-    \return returns zero if the number is zero, otherwise returns the number itself
-*/
-double fix_zero (double n);
 
 /** \brief Reading input parameters
     \version 1.1.0

@@ -2,22 +2,17 @@
 #include <math.h>
 #include <assert.h>
 #include "headers\Squaref.h"
-
-#define my_assert(condition) {                                          \
-    if (!(condition))                                                   \
-        printf ("ERROR in %s in line %d in file %s in function %s\n",   \
-                #condition, __LINE__, __FILE__, __PRETTY_FUNCTION__);     \
-}
+#include "headers\Generals.h"
 
 char solve_square (double a, double b, double c, double *x1, double *x2){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
     assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
 
-    my_assert (isfinite (a));
-    my_assert (isfinite (b));
-    my_assert (isfinite (c));
-    my_assert (x1 != NULL);
-    my_assert (x2 != NULL);
+    is_error (isfinite (a));
+    is_error (isfinite (b));
+    is_error (isfinite (c));
+    is_error (x1 != NULL);
+    is_error (x2 != NULL);
 
     char type_equation = get_Type (a, b, c);
     switch (type_equation){
@@ -41,9 +36,9 @@ char solve_square (double a, double b, double c, double *x1, double *x2){
 char get_Type (double a, double b, double c){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
 
-    my_assert (isfinite (a));
-    my_assert (isfinite (b));
-    my_assert (isfinite (c));
+    is_error (isfinite (a));
+    is_error (isfinite (b));
+    is_error (isfinite (c));
 
     if (is_zero (a))
         if (is_zero (b))
@@ -64,12 +59,12 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
     assert (x1 != NULL && x2 != NULL && "ptrs must not be NULL");
     assert(!is_zero (a) && "must not be zero");
 
-    my_assert (isfinite (a));
-    my_assert (isfinite (b));
-    my_assert (isfinite (c));
-    my_assert (x1 != NULL);
-    my_assert (x2 != NULL);
-    my_assert (!is_zero (a));
+    is_error (isfinite (a));
+    is_error (isfinite (b));
+    is_error (isfinite (c));
+    is_error (x1 != NULL);
+    is_error (x2 != NULL);
+    is_error (!is_zero (a));
 
     double D = Discriminant (a, b, c);
 
@@ -97,9 +92,9 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
 double Discriminant (double a, double b, double c){
     assert (isfinite (a) && isfinite (b) && isfinite (c) && "vals must not be NAN/INF");
 
-    my_assert (isfinite (a));
-    my_assert (isfinite (b));
-    my_assert (isfinite (c));
+    is_error (isfinite (a));
+    is_error (isfinite (b));
+    is_error (isfinite (c));
 
     return b*b - 4*a*c;
 }
@@ -109,40 +104,22 @@ char liner_equation (double a, double b, double *x){
     assert (x != NULL && "ptrs must not be NULL");
     assert (!is_zero (a) && "must not be zero");
 
-    my_assert (isfinite (a));
-    my_assert (isfinite (a));
-    my_assert (x != NULL);
-    my_assert (!is_zero (a));
+    is_error (isfinite (a));
+    is_error (isfinite (a));
+    is_error (x != NULL);
+    is_error (!is_zero (a));
 
     *x = -b / a;
 
     return ONE_ROOT;
 }
 
-bool is_zero (double n){
-    assert (isfinite (n) && "vals must not be NAN/INF");
-
-    my_assert (isfinite (n));
-
-    return fabs (n) < Eps;
-}
-
-double fix_zero (double n){
-    assert (isfinite (n) && "vals must not be NAN/INF");
-
-    my_assert (isfinite (n));
-
-    if (is_zero (n))
-        return 0.0;
-    return n;
-}
-
 bool read_arguments (double *a, double *b, double *c){
     assert (a != NULL && b != NULL && c != NULL && "ptrs must not be NULL");
 
-    my_assert (a != NULL);
-    my_assert (b != NULL);
-    my_assert (c != NULL);
+    is_error (a != NULL);
+    is_error (b != NULL);
+    is_error (c != NULL);
 
     if (scanf ("%lf%lf%lf", a, b, c) != 3){
         printf ("Invalid value entry\n");

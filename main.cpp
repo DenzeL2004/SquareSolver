@@ -3,6 +3,7 @@
 #include <math.h>
 #include "headers\Squaref.h"
 #include "headers\Testf.h"
+#include "headers\Generals.h"
 
 int main(){
 #ifdef TEST
