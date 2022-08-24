@@ -4,18 +4,18 @@
 #include "headers\Testf.h"
 #include "headers\Generals.h"
 
-const int Max_test = 6;
+const int Cnt_test = 6;
 
-Parameters paramet[Max_test] = {{1,  2, 3,  NO_ROOTS,          NAN,  NAN},
+Parameters paramet[Cnt_test] = {{1,  2, 3,  NO_ROOTS,          NAN,  NAN},
                                 {1, -2, 1,  ONE_ROOT,             1, NAN},
                                 {0,  0, 0, INF_ROOTS,           NAN, NAN},
                                 {0,  3, 1,  ONE_ROOT, -0.3333333334, NAN},
                                 {0,  0, 3,  NO_ROOTS,           NAN, NAN},
-                                {1,  3, 2,    INF_ROOTS,            -1,  -2}};
+                                {1,  3, 2,    SQUARE,            -1,  -2}};
 
 
 void unit_test(){
-    for (int current_test = 0; current_test < Max_test; current_test++){
+    for (int current_test = 0; current_test < Cnt_test; current_test++){
         double a = paramet[current_test].a,
                b = paramet[current_test].b,
                c = paramet[current_test].c;
