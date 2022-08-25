@@ -44,7 +44,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
     int CORRECT_TEST = 1;
 
     print_colour (BLUE, "Input arguments:\n");
-    printf ("a = %lf\nb = %lf\nc = %lf\n", ans_param.a, ans_param.b, ans_param.c);
+    printf ("a = %lg\nb = %lg\nc = %lg\n", ans_param.a, ans_param.b, ans_param.c);
     putchar ('\n');
 
     if (cur_count_roots != ans_param.count_roots){
@@ -52,13 +52,13 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
 
         print_colour (YELLOW, "Waiting ");
         print_result (GREEN, ans_param.count_roots);
-        printf ("count roots = %d\nx1 = %lf\nx2 = %lf\n", ans_param.count_roots, ans_param.x1, ans_param.x2);
+        printf ("count roots = %d\nx1 = %lg\nx2 = %lg\n", ans_param.count_roots, ans_param.x1, ans_param.x2);
 
         putchar ('\n');
 
         print_colour (YELLOW, "Received ");
         print_result (RED, cur_count_roots);
-        printf ("count roots = %d\nx1 = %lf\nx2 = %lf\n", cur_count_roots, cur_x1, cur_x2);
+        printf ("count roots = %d\nx1 = %lg\nx2 = %lg\n", cur_count_roots, cur_x1, cur_x2);
 
         return (CORRECT_TEST = 0);
     }
@@ -86,7 +86,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
 
             if (equality_double (cur_x1, ans_param.x1) && equality_double (cur_x2, ans_param.x2)){
                 print_colour (GREEN, "OK two roots\n");
-                printf ("x1 = %.6lf\nx2 = %.6lf\n", cur_x1, cur_x2);
+                printf ("x1 = %lg\nx2 = %lg\n", cur_x1, cur_x2);
                 return CORRECT_TEST;
             }
             else
@@ -97,7 +97,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
 
             if (equality_double (cur_x1, ans_param.x1) && isnan(cur_x2)){
                 print_colour (GREEN, "OK one root\n");
-                printf ("x = %.6lf\n", cur_x1);
+                printf ("x = %lg\n", cur_x1);
                 return CORRECT_TEST;
             }
             else
@@ -111,8 +111,8 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
 
     if (!CORRECT_TEST){
         print_colour (RED, "WRONG\n");
-        printf ("cur_x1 = %.6lf cur_x2 = %.6lf\n", cur_x1, cur_x2);
-        printf ("ans_x1 = %.6lf ans_x2 = %.6lf\n", ans_param.x1, ans_param.x2);
+        printf ("cur_x1 = %lg cur_x2 = %lg\n", cur_x1, cur_x2);
+        printf ("ans_x1 = %lg ans_x2 = %lg\n", ans_param.x1, ans_param.x2);
     }
 
     return (CORRECT_TEST = 0);

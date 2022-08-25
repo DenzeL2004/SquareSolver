@@ -103,7 +103,7 @@ bool read_arguments (double *a, double *b, double *c){
     is_error (b != NULL);
     is_error (c != NULL);
 
-    if (scanf ("%lf%lf%lf", a, b, c) != 3){
+    if (scanf ("%lg%lg%lg", a, b, c) != 3){
         printf ("Invalid value entry\n");
         return false;
     }
@@ -133,7 +133,7 @@ void write_result (char count_roots, double x1, double x2){
             x2 = fix_zero (x2);
 
             printf ("Equation has two different solutions\n");
-            printf ("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
+            printf ("x1 = %lg\nx2 = %lg\n", x1, x2);
             break;
 
         case ONE_ROOT:
@@ -141,7 +141,7 @@ void write_result (char count_roots, double x1, double x2){
 
             x1 = fix_zero (x1);
 
-            printf ("x = %.6lf\n", x1);
+            printf ("x = %lg\n", x1);
             break;
 
         case NO_ROOTS:
