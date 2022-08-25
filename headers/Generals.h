@@ -15,9 +15,13 @@ const char YELLOW[] =  "\033[1;33m";
 
 const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
 
+/**
+    \eunum Flags
+    \brief Represents the status of flags
+*/
 enum Flags{
-    NOTHING = 0,
-    TEST_FLAG = 1
+    NOTHING   = 0,  ///< There are no flags
+    TEST_FLAG = 1   ///< flag pretesting the program
 };
 
 /** \brief Comparison of double variables
@@ -45,11 +49,16 @@ double fix_zero (double num);
 
 /** \brief Paints a line
     \version 1.0.0
-    \param [in] Colour you want to paint
-    \param [in] Line to be colored
+    \param [in] colour colour you want to paint a line
+    \param [in] str line to be colored
 */
-void print_colour (char const colour[], char const fmt[], ...);
+void print_colour (char const colour[], char const *str, ...);
 
+/** \brief Paints a line
+    \version 1.0.0
+    \param [in] argc argument count
+    \param [in] argv argument values
+*/
 char parsing (int argc, char *argv[]);
 
 #endif

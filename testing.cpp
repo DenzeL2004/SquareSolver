@@ -26,18 +26,19 @@ void unit_test(){
         putchar ('\n');
     }
 
-
     return;
 }
 
 bool check_equality (double cur_x1, double cur_x2, char cur_count_roots, Parameters ans_param, int test_number){
     print_colour (YELLOW, "TEST NUMBER %d\n", test_number);
+
     print_colour (BLUE, "Input arguments:\n");
     printf ("a = %lf\nb = %lf\nc = %lf\n", ans_param.a, ans_param.b, ans_param.c);
     putchar ('\n');
 
     if (cur_count_roots != ans_param.count_roots){
         print_colour (RED, "FAILED:\n");
+
         print_colour (YELLOW, "Waiting ");
         print_result (GREEN, ans_param.count_roots);
         printf ("count roots = %d\nx1 = %lf\nx2 = %lf\n", ans_param.count_roots, ans_param.x1, ans_param.x2);
@@ -125,4 +126,6 @@ void print_result (const char colour[], int count_roots){
             print_colour (RED, "ERROR\n");
             break;
     }
+
+    return;
 }

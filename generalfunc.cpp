@@ -24,13 +24,13 @@ double fix_zero (double num){
     return num;
 }
 
-void print_colour (char const colour[], char const *fmt, ...){
+void print_colour (char const colour[], char const *str, ...){
     printf (colour);
 
     va_list arg_ptr;
 
-    va_start (arg_ptr, fmt);
-    vprintf (fmt, arg_ptr);
+    va_start (arg_ptr, str);
+    vprintf (str, arg_ptr);
     va_end (arg_ptr);
 
     printf (RESET);
@@ -49,4 +49,6 @@ char parsing (int argc, char *argv[]){
                 return NOTHING;
         }
     }
+
+    return NOTHING;
 }

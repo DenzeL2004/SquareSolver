@@ -6,11 +6,11 @@
     \brief Represents the number of roots of the equation
 */
 enum State {
-    INF_ROOTS = -1, ///< The equation has an infinite number of solutions
-    NO_ROOTS = 0,   ///< The equation has no solutions
-    ONE_ROOT = 1,   ///< The equation has a maximum of one solutions
-    SQUARE = 2,     ///< The equation has a maximum of two solutions
-    ANOTHER = 3     ///< Another case
+    INF_ROOTS =  -1,    ///< The equation has an infinite number of solutions
+    NO_ROOTS  =   0,    ///< The equation has no solutions
+    ONE_ROOT  =   1,    ///< The equation has a maximum of one solutions
+    SQUARE    =   2,    ///< The equation has a maximum of two solutions
+    ANOTHER   =   3     ///< Another case
 };
 
 /** \brief Solution of the original equation

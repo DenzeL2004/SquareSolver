@@ -3,7 +3,7 @@
 
 /**
     \struct Parameters_equation
-    \brief Represents of second degree equation
+    \brief Represents arguments of second degree equation
 */
 typedef struct Parameters_equation {
     double a, b, c;         ///< parametors equation
@@ -35,6 +35,7 @@ bool check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramet
     \brief Conclusion of the verdict
     \version 1.0.0
     \param [in] count_root number of roots found by the program
+    \param [in] colour colour you want to paint a line
 */
 void print_result (const char colour[], int count_roots);
 
