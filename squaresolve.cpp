@@ -71,8 +71,8 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
     double sqrt_D = sqrt (D);
 
     if (D > 0.0){
-        *x1 = (-b + sqrt_D) / a;
-        *x2 = (-b - sqrt_D) / a;
+        *x1 = (-b - sqrt_D) / a;
+        *x2 = (-b + sqrt_D) / a;
         return SQUARE;
     }
 
@@ -129,11 +129,8 @@ void write_result (char count_roots, double x1, double x2){
             break;
 
         case SQUARE:
-            if (is_zero (x1))
-                x1 = fix_zero (x1);
-
-            if (is_zero (x2))
-                x2 = fix_zero (x2);
+            x1 = fix_zero (x1);
+            x2 = fix_zero (x2);
 
             printf ("Equation has two different solutions\n");
             printf ("x1 = %.6lf\nx2 = %.6lf\n", x1, x2);
@@ -142,8 +139,7 @@ void write_result (char count_roots, double x1, double x2){
         case ONE_ROOT:
             printf ("Equation has exactly one solution\n");
 
-            if (is_zero (x1))
-                x1 = fix_zero (x1);
+            x1 = fix_zero (x1);
 
             printf ("x = %.6lf\n", x1);
             break;

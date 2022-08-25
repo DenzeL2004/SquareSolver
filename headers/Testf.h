@@ -29,7 +29,7 @@ void unit_test();
     \param [in] test_number number of current test
     \return True - original and calculated roots are equal, False - another way
 */
-bool check_equality (double cur_x1, double cur_x2, char cur_count_roots, Parameters ans_param, int test_number);
+int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Parameters ans_param, int test_number);
 
 /**
     \brief Conclusion of the verdict

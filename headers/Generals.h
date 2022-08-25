@@ -1,22 +1,27 @@
 #ifndef _GENERALS_H_
 #define _GENERALS_H_
 
-const char RESET[]  =     "\033[0m";
-const char RED[]    =  "\033[1;31m";
-const char BLUE[]   =  "\033[1;36m";
-const char GREEN[]  =  "\033[1;32m";
-const char YELLOW[] =  "\033[1;33m";
-
+/**
+    \def is_error
+    \brief Checks for false input conditions
+    \note This define does not terminate the program in case of an error like assert
+*/
 #define is_error(condition) {                                           \
     if (!(condition))                                                   \
         printf ("ERROR in %s in line %d in file %s in function %s\n",   \
                 #condition, __LINE__, __FILE__, __PRETTY_FUNCTION__);   \
 }
 
+const char RESET[]  =     "\033[0m";     ///< Standart colour
+const char RED[]    =  "\033[1;31m";     ///< Red colour
+const char BLUE[]   =  "\033[1;36m";     ///< Blue colour
+const char GREEN[]  =  "\033[1;32m";     ///< Green colour
+const char YELLOW[] =  "\033[1;33m";     ///< Yellow colour
+
 const long double Eps = 1e-10; ///< Global constant equal to \f$\ 10^{-9}\f$
 
 /**
-    \eunum Flags
+    \enum Flags
     \brief Represents the status of flags
 */
 enum Flags{
