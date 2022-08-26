@@ -6,7 +6,7 @@
 
 const int Cnt_test = 11;
 
-Parameters paramet[Cnt_test] = {{1,  2,  3,  NO_ROOTS,           NAN, NAN},
+const Parameters paramet[Cnt_test] = {{1,  2,  3,  NO_ROOTS,           NAN, NAN},
                                 {1,  3,  2,    SQUARE,            -2,  -1},
                                 {1, -2,  1,  ONE_ROOT,             1, NAN},
                                 {0,  0,  0, INF_ROOTS,           NAN, NAN},

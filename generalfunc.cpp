@@ -39,14 +39,14 @@ void print_colour (char const colour[], char const *str, ...){
 char parsing (int argc, char *argv[]){
     while (--argc > 0 && (*++argv)[0] == '-'){
         char ch = 0;
-        ch = *++argv[0];
+        while (ch = *++argv[0]){
+            switch (ch){
+                case 't':
+                    return TEST_FLAG;
 
-        switch (ch){
-            case 't':
-                return TEST_FLAG;
-
-            default:
-                return NOTHING;
+                default:
+                    return NOTHING;
+            }
         }
     }
 
