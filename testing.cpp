@@ -28,8 +28,10 @@ void unit_test(){
 
         double x1 = NAN, x2 = NAN;
         char count_roots = 0;
+
         count_roots = solve_square (a, b, c, &x1, &x2);
         cnt_OK_tests += check_equality (x1, x2, count_roots, paramet[current_test], current_test+1);
+
         putchar ('\n');
     }
 
@@ -87,6 +89,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
             if (equality_double (cur_x1, ans_param.x1) && equality_double (cur_x2, ans_param.x2)){
                 print_colour (GREEN, "OK two roots\n");
                 printf ("x1 = %lg\nx2 = %lg\n", cur_x1, cur_x2);
+
                 return CORRECT_TEST;
             }
             else
@@ -98,6 +101,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
             if (equality_double (cur_x1, ans_param.x1) && isnan(cur_x2)){
                 print_colour (GREEN, "OK one root\n");
                 printf ("x = %lg\n", cur_x1);
+
                 return CORRECT_TEST;
             }
             else
