@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdarg.h>
+
 #include "headers\Generals.h"
 
 bool equality_double (double num1, double num2){

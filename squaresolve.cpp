@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+
 #include "headers\Squaref.h"
 #include "headers\Generals.h"
 
@@ -9,6 +10,7 @@ char solve_square (double a, double b, double c, double *x1, double *x2){
     is_error (isfinite (c));
     is_error (x1 != NULL);
     is_error (x2 != NULL);
+    is_error (x1 != x2);
 
     char type_equation = get_Type (a, b, c);
     switch (type_equation){
@@ -16,10 +18,10 @@ char solve_square (double a, double b, double c, double *x1, double *x2){
             return INF_ROOTS;
 
         case SQUARE:
-            return square_equation (a, b, c, x1, x2);
+            return _square_equation (a, b, c, x1, x2);
 
         case ONE_ROOT:
-            return liner_equation (b, c, x1);
+            return _liner_equation (b, c, x1);
 
         case NO_ROOTS:
             return NO_ROOTS;
@@ -48,7 +50,7 @@ char get_Type (double a, double b, double c){
     return ANOTHER;
 }
 
-char square_equation (double a, double b, double c, double *x1, double *x2){
+static char _square_equation (double a, double b, double c, double *x1, double *x2){
     is_error (isfinite (a));
     is_error (isfinite (b));
     is_error (isfinite (c));
@@ -56,12 +58,42 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
     is_error (x2 != NULL);
     is_error (!is_zero (a));
 
+    if (is_zero (b)){
+        if (is_zero (c)){
+            *x1 = 0.0;
+            return ONE_ROOT;
+        }
+
+        if (c * a > 0)
+            return NO_ROOTS;
+
+        if (c * a < 0){
+            *x1 = -sqrt (-c / a);
+            *x2 =  sqrt (-c / a);
+            return SQUARE;
+        }
+    }
+
+    if (is_zero (c)){
+        if (b < 0){
+            *x1 = 0.0;
+            *x2 =  -b;
+            return SQUARE;
+        }
+
+        if (b > 0){
+            *x1 =  -b;
+            *x2 = 0.0;
+            return SQUARE;
+        }
+    }
+
     double D = Discriminant (a, b, c);
 
-    a *= 2;
+    double a2 = a * 2;
 
     if (is_zero (D)){
-        *x1 = -b / a;
+        *x1 = -b / a2;
         return ONE_ROOT;
     }
 
@@ -71,8 +103,8 @@ char square_equation (double a, double b, double c, double *x1, double *x2){
     double sqrt_D = sqrt (D);
 
     if (D > 0.0){
-        *x1 = (-b - sqrt_D) / a;
-        *x2 = (-b + sqrt_D) / a;
+        *x1 = (-b - sqrt_D) / a2;
+        *x2 = (-b + sqrt_D) / a2;
         return SQUARE;
     }
 
@@ -87,7 +119,7 @@ double Discriminant (double a, double b, double c){
     return b*b - 4*a*c;
 }
 
-char liner_equation (double a, double b, double *x){
+static char _liner_equation (double a, double b, double *x){
     is_error (isfinite (a));
     is_error (isfinite (a));
     is_error (x != NULL);

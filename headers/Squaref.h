@@ -75,7 +75,7 @@ double Discriminant (double a, double b, double c);
         }
     \endcode
 */
-char square_equation (double a, double b, double c, double *x1, double *x2);
+static char _square_equation (double a, double b, double c, double *x1, double *x2);
 
 /** \brief Solution of a linear equation
     \note The function finds the root when the parameter a is zero
@@ -86,7 +86,7 @@ char square_equation (double a, double b, double c, double *x1, double *x2);
     \param [out] x pointer of equation root
     \return Number of roots
 */
-char liner_equation (double a, double b, double *x);
+static char _liner_equation (double a, double b, double *x);
 
 /** \brief Reading input parameters
     \version 1.1.0

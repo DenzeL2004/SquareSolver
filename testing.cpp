@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <math.h>
+
 #include "headers\Squaref.h"
 #include "headers\Testf.h"
 #include "headers\Generals.h"
 
 const int Cnt_test = 11;
 
-const Parameters paramet[Cnt_test] = {{1,  2,  3,  NO_ROOTS,           NAN, NAN},
-                                {1,  3,  2,    SQUARE,            -2,  -1},
-                                {1, -2,  1,  ONE_ROOT,             1, NAN},
-                                {0,  0,  0, INF_ROOTS,           NAN, NAN},
-                                {0,  0,  3,  NO_ROOTS,           NAN, NAN},
-                                {0,  4,  0,  ONE_ROOT,             0, NAN},
-                                {0,  3,  1,  ONE_ROOT, -0.3333333334, NAN},
-                                {2,  0,  0,  ONE_ROOT,             0, NAN},
-                                {3,  0,  1,  NO_ROOTS,           NAN, NAN},
-                                {1,  0, -1,    SQUARE,            -1,   1},
-                                {1,  2,  0,    SQUARE,            -2,   0}};
+const Parameters paramet[Cnt_test] =   {{1,  2,  3,  NO_ROOTS,           NAN, NAN},
+                                        {1,  3,  2,    SQUARE,            -2,  -1},
+                                        {1, -2,  1,  ONE_ROOT,             1, NAN},
+                                        {0,  0,  0, INF_ROOTS,           NAN, NAN},
+                                        {0,  0,  3,  NO_ROOTS,           NAN, NAN},
+                                        {0,  4,  0,  ONE_ROOT,             0, NAN},
+                                        {0,  3,  1,  ONE_ROOT, -0.3333333334, NAN},
+                                        {2,  0,  0,  ONE_ROOT,             0, NAN},
+                                        {3,  0,  1,  NO_ROOTS,           NAN, NAN},
+                                        {1,  0, -1,    SQUARE,            -1,   1},
+                                        {1,  2,  0,    SQUARE,            -2,   0}};
 
 void unit_test(){
     int cnt_OK_tests = 0;
@@ -69,6 +70,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
         case NO_ROOTS:
             if (isnan (cur_x1) && isnan (cur_x2)){
                 print_colour (GREEN, "OK not roots\n");
+
                 return CORRECT_TEST;
             }
             else
@@ -77,6 +79,7 @@ int check_equality (double cur_x1, double cur_x2, char cur_count_roots, Paramete
         case INF_ROOTS:
             if (isnan (cur_x1) && isnan (cur_x2)){
                 print_colour (GREEN, "OK inf roots\n");
+
                 return CORRECT_TEST;
             }
             else
